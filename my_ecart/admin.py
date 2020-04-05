@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import User , Product
+from .models import CouponType, User
+
 # Register your models here.
 
-admin.site.register(Product)
+admin.site.register(CouponType)
+admin.site.register(User)
