@@ -15,6 +15,9 @@ class User(models.Model):
     is_deleted = models.BooleanField(default=False)
     description = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 class ProductCategory(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -23,6 +26,9 @@ class ProductCategory(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -35,6 +41,9 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name
+
 
 class CartOrder(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -46,6 +55,9 @@ class CartOrder(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
 
 
 class CartItem(models.Model):
