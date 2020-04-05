@@ -16,7 +16,6 @@ class User(models.Model):
     description = models.CharField(max_length=100)
 
 
-
 class ProductCategory(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=30)
