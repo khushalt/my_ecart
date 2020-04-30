@@ -33,7 +33,7 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    category_id = models.ForeignKey(ProductCategory, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(ProductCategory, on_delete=models.DO_NOTHING)
     rate = models.FloatField(max_length=20)
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
@@ -49,7 +49,7 @@ class CartOrder(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=30)
     order_date = models.DateTimeField(auto_now_add=True)
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     total_actual_amount = models.FloatField(max_length=20)
     total_discounted_amount = models.FloatField(max_length=20)
     created = models.DateTimeField(auto_now_add=True)
@@ -62,8 +62,8 @@ class CartOrder(models.Model):
 
 class CartItem(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    order_id = models.ForeignKey(CartOrder, on_delete=models.DO_NOTHING)
-    product_id = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    order = models.ForeignKey(CartOrder, on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
     quantity = models.FloatField(max_length=20)
     amount = models.FloatField(max_length=20)
 
@@ -76,13 +76,13 @@ class CouponType(models.Model):
 
 class Coupon(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    type_id = models.ForeignKey(CouponType, on_delete=models.DO_NOTHING)
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    type = models.ForeignKey(CouponType, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
 
 class Address(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     zipcode = models.CharField(max_length=10)
@@ -92,5 +92,5 @@ class Address(models.Model):
 
 class CartOrderCoupen:
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    order_id = models.ForeignKey(CartOrder, on_delete=models.DO_NOTHING)
-    coupon_id = models.ForeignKey(Coupon, on_delete=models.DO_NOTHING)
+    order = models.ForeignKey(CartOrder, on_delete=models.DO_NOTHING)
+    coupon = models.ForeignKey(Coupon, on_delete=models.DO_NOTHING)
