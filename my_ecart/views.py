@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Product
-from .serilizer import ProductSerilizer
+from .models import Product, ProductCategory
+from .serilizer import ProductSerilizer, ProductCategorySerilizer
 from rest_framework.views import APIView
 
 
@@ -22,3 +22,9 @@ class ProductList(APIView):
         return Response(serilizer.data)
 
 
+class ProductCategoryList(APIView):
+
+    def get(self, request, format=None):
+        products = ProductCategory.objects.all()
+        serilizer = ProductCategorySerilizer(products, many=True)
+        return Response(serilizer.data)
