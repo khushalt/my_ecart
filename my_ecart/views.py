@@ -21,6 +21,13 @@ class ProductList(APIView):
         serilizer = ProductSerilizer(products, many=True)
         return Response(serilizer.data)
 
+    def post(self, request, format=None):
+        serilizer = ProductSerilizer(data=request.data)
+        if serilizer.is_valid():
+            serilizer.save()
+            return Response(serilizer.data)
+        return Response(serilizer.errors)
+
 
 class ProductCategoryList(APIView):
 
