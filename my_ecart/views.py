@@ -14,14 +14,6 @@ def home(request):
     return render(request, 'home.html')
 
 
-class ProductList(APIView):
-
-    def get(self, request, format=None):
-        products = Product.objects.all()
-        serilizer = ProductSerilizer(products, many=True)
-        return Response(serilizer.data)
-
-
 class ProductCategoryList(APIView):
 
     def get(self, request, format=None):
